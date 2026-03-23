@@ -1,0 +1,34 @@
+23:37:52 | INFO     | Starting audit: BOSSbase_1.01 (mode=bossbase, workers=4)
+23:37:52 | WARNING  | No cover/ subdir found in BOSSbase_1.01. Treating all images in root as cover (raw BOSSBase layout). To generate stego pairs, run the embedding step first.
+23:37:53 | INFO     | No stego/ directory found -- stego pairs not yet generated
+23:37:53 | INFO     | No rho/ directory found -- rho maps will be synthetic
+23:37:53 | INFO     | Discovered: 10000 cover | 0 stego | 0 rho
+23:37:53 | INFO     | Scanning 10000 cover images with 4 workers...
+23:37:54 | INFO     |   Progress: 500/10000
+23:37:56 | INFO     |   Progress: 1000/10000
+23:37:58 | INFO     |   Progress: 1500/10000
+23:37:59 | INFO     |   Progress: 2000/10000
+23:38:01 | INFO     |   Progress: 2500/10000
+23:38:03 | INFO     |   Progress: 3000/10000
+23:38:05 | INFO     |   Progress: 3500/10000
+23:38:06 | INFO     |   Progress: 4000/10000
+23:38:08 | INFO     |   Progress: 4500/10000
+23:38:10 | INFO     |   Progress: 5000/10000
+23:38:11 | INFO     |   Progress: 5500/10000
+23:38:13 | INFO     |   Progress: 6000/10000
+23:38:15 | INFO     |   Progress: 6500/10000
+23:38:16 | INFO     |   Progress: 7000/10000
+23:38:18 | INFO     |   Progress: 7500/10000
+23:38:19 | INFO     |   Progress: 8000/10000
+23:38:21 | INFO     |   Progress: 8500/10000
+23:38:23 | INFO     |   Progress: 9000/10000
+23:38:25 | INFO     |   Progress: 9500/10000
+23:38:26 | INFO     |   Progress: 10000/10000
+23:38:26 | INFO     | Running duplicate detection via MD5 hash...
+23:38:26 | INFO     | Running statistical outlier detection...
+23:38:26 | INFO     | Scan complete in 34.1s
+23:38:27 | INFO     | JSON report -> audit_report.json
+23:38:27 | INFO     | Removed log (17 entries) -> removed_log.csv
+23:38:27 | INFO     | Warnings log (9983 entries) -> warnings_log.csv
+23:38:27 | INFO     | Clean manifest (9983 entries) -> clean_manifest.json
+23:38:27 | INFO     | HTML report -> audit_report.html

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HybridLocNet Dataset Audit Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+  :root { --bg:#080b10; --surface:#0d1117; --card:#111620; --border:#1e2a38;
+           --text:#e2e8f0; --muted:#64748b; --mono:'IBM Plex Mono',monospace;
+           --sans:'Inter',sans-serif; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6; padding:40px; }
+  h1 { font-size:28px; font-weight:600; margin-bottom:6px; }
+  h2 { font-size:16px; font-weight:500; color:#94a3b8; margin:28px 0 14px; text-transform:uppercase; letter-spacing:.07em; }
+  .ts { color:var(--muted); font-family:var(--mono); font-size:12px; margin-bottom:32px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-bottom:28px; }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+  .stat .val { font-size:28px; font-weight:600; font-family:var(--mono); }
+  .stat .lbl { font-size:12px; color:var(--muted); margin-top:4px; }
+  .health { font-size:48px; font-weight:700; color:#10b981; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:24px; }
+  th { font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+        color:var(--muted); padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; }
+  td { padding:8px 12px; border-bottom:1px solid rgba(30,42,56,.5); }
+  td.num { font-family:var(--mono); color:#00d4ff; text-align:right; }
+  td.path { font-family:var(--mono); font-size:11px; color:#94a3b8; max-width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  td.reason { color:#ef4444; font-family:var(--mono); font-size:11px; }
+  tr:hover td { background:rgba(255,255,255,.02); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:18px; }
+  img { max-width:100%; border-radius:8px; margin-top:12px; }
+  .ok { color:#10b981; } .warn { color:#f59e0b; } .err { color:#ef4444; }
+</style>
+</head>
+<body>
+<h1>🔬 HybridLocNet Dataset Audit</h1>
+<div class="ts">Generated: 2026-03-21T23:37:52 &nbsp;|&nbsp; Root: BOSSbase_1.01 &nbsp;|&nbsp; Mode: bossbase</div>
+
+<div class="stats">
+  <div class="stat"><div class="val health">99.8%</div><div class="lbl">Dataset health</div></div>
+  <div class="stat"><div class="val">10,000</div><div class="lbl">Total scanned</div></div>
+  <div class="stat"><div class="val ok">9,983</div><div class="lbl">Valid files</div></div>
+  <div class="stat"><div class="val err">17</div><div class="lbl">Removed</div></div>
+  <div class="stat"><div class="val warn">10,000</div><div class="lbl">With warnings</div></div>
+  <div class="stat"><div class="val">4</div><div class="lbl">Duplicates</div></div>
+  <div class="stat"><div class="val ok">9,983</div><div class="lbl">Valid covers</div></div>
+  <div class="stat"><div class="val ok">0</div><div class="lbl">Valid stego</div></div>
+  <div class="stat"><div class="val ok">0</div><div class="lbl">Valid rho maps</div></div>
+  <div class="stat"><div class="val">512x512</div><div class="lbl">Modal image size</div></div>
+</div>
+
+<div class="card">
+  <h2>Removal Reasons</h2>
+  <table><tr><th>Reason</th><th style="text-align:right">Count</th></tr><tr><td>duplicate</td><td class="num">4</td></tr><tr><td>near_black_mean_0.0190</td><td class="num">2</td></tr><tr><td>near_black_mean_0.0103</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0075</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0181</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0135</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0069</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0054</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0134</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0166</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0167</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0174</td><td class="num">1</td></tr><tr><td>near_black_mean_0.0193</td><td class="num">1</td></tr></table>
+</div>
+
+<div class="card">
+  <h2>Warning Types (top 20)</h2>
+  <table><tr><th>Warning</th><th style="text-align:right">Count</th></tr><tr><td>non_target_size_512x512</td><td class="num">10000</td></tr><tr><td>no_stego_pair</td><td class="num">10000</td></tr></table>
+</div>
+
+<div class="card">
+  <h2>Image Size Distribution (top 10)</h2>
+  <table><tr><th>Size</th><th style="text-align:right">Count</th></tr><tr><td>512x512</td><td class="num">9983</td></tr></table>
+</div>
+
+<div class="card">
+  <h2>Removed Files (first 50)</h2>
+  <table>
+    <tr><th>Filename</th><th>Split</th><th>Reason</th><th>Size</th><th>Mean</th><th>Std</th></tr>
+    <tr><td class="path">229.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0103</td><td>512x512</td><td>0.010</td><td>0.015</td></tr><tr><td class="path">5162.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0075</td><td>512x512</td><td>0.007</td><td>0.049</td></tr><tr><td class="path">5215.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0181</td><td>512x512</td><td>0.018</td><td>0.119</td></tr><tr><td class="path">5536.pgm</td><td>cover</td><td class="reason">duplicate</td><td>512x512</td><td>0.346</td><td>0.214</td></tr><tr><td class="path">5537.pgm</td><td>cover</td><td class="reason">duplicate</td><td>512x512</td><td>0.451</td><td>0.177</td></tr><tr><td class="path">5540.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0135</td><td>512x512</td><td>0.014</td><td>0.039</td></tr><tr><td class="path">5538.pgm</td><td>cover</td><td class="reason">duplicate</td><td>512x512</td><td>0.298</td><td>0.187</td></tr><tr><td class="path">5539.pgm</td><td>cover</td><td class="reason">duplicate</td><td>512x512</td><td>0.398</td><td>0.272</td></tr><tr><td class="path">5541.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0069</td><td>512x512</td><td>0.007</td><td>0.029</td></tr><tr><td class="path">5542.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0054</td><td>512x512</td><td>0.005</td><td>0.031</td></tr><tr><td class="path">5543.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0134</td><td>512x512</td><td>0.013</td><td>0.056</td></tr><tr><td class="path">5724.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0166</td><td>512x512</td><td>0.017</td><td>0.049</td></tr><tr><td class="path">6956.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0190</td><td>512x512</td><td>0.019</td><td>0.037</td></tr><tr><td class="path">7207.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0190</td><td>512x512</td><td>0.019</td><td>0.077</td></tr><tr><td class="path">7228.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0167</td><td>512x512</td><td>0.017</td><td>0.036</td></tr><tr><td class="path">7238.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0174</td><td>512x512</td><td>0.017</td><td>0.040</td></tr><tr><td class="path">8986.pgm</td><td>cover</td><td class="reason">near_black_mean_0.0193</td><td>512x512</td><td>0.019</td><td>0.035</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Diagnostic Plots</h2>
+  <img src="plots/distribution_plots.png" alt="Distribution plots" onerror="this.style.display='none'">
+  <img src="plots/mean_vs_std.png" alt="Mean vs Std" style="margin-top:12px" onerror="this.style.display='none'">
+</div>
+</body></html>
