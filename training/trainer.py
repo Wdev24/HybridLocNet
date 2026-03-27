@@ -236,12 +236,19 @@ class Trainer:
             self.history['val'].append(val_m)
 
             elapsed = time.time() - t0
+            # Log fusion alpha so we can monitor stream balance
+            try:
+                alpha_val = torch.sigmoid(self.model.fusion.alpha).item()
+                alpha_str = f" alpha={alpha_val:.2f}"
+            except Exception:
+                alpha_str = ""
+
             print(
                 f"Ep {epoch:3d}/{n_epochs} [{stage_str:10s}] | "
                 f"cls={train_m['cls']:.4f} loc={train_m['loc']:.4f} | "
                 f"acc={train_m['det_acc']:.3f} IoU={train_m['iou']:.3f} | "
                 f"val_acc={val_m['det_acc']:.3f} val_IoU={val_m['iou']:.3f} | "
-                f"{elapsed:.0f}s"
+                f"{elapsed:.0f}s{alpha_str}"
             )
 
             # Save on best val accuracy (more meaningful than val loss in staged training)

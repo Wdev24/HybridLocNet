@@ -102,6 +102,23 @@ class SyntheticStegoDataset(Dataset):
                                           self.payload_rate, self.n_bit_planes)
             if self.deterministic:
                 np.random.set_state(old_state)
+        else:
+            # Noise-augmented cover (15% of cover samples during training):
+            # Add random ±3 noise but keep label=0.
+            # Teaches the model: "high-frequency energy alone != stego".
+            # Directly addresses Exp 3 failure (noise scored higher than embedding).
+            if not self.deterministic and np.random.rand() < 0.15:
+                n_px = int(256 * 256 * self.payload_rate)
+                idx  = np.random.choice(256*256, n_px, replace=False)
+                noise_img = img_np.copy().astype(np.int16)
+                for ch in range(3):
+                    flat = noise_img[:, :, ch].flatten()
+                    flat[idx] = np.clip(
+                        flat[idx] + np.random.randint(-3, 4, n_px), 0, 255)
+                    noise_img[:, :, ch] = flat.reshape(256, 256)
+                img_np = noise_img.astype(np.uint8)
+                # label stays 0 (cover) — model must learn noise != stego
+
         img_tensor = self.normalize(self.to_tensor(img_np))
         rho_tensor = torch.from_numpy(rho).unsqueeze(0)
         pay_tensor = rho_tensor * self.payload_rate
