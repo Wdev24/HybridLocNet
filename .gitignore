@@ -1,5 +1,20 @@
+# Model checkpoints
 checkpoints/
 *.pt
+
+# Dataset
 BOSSbase_1.01/
+
+# Python cache
 __pycache__/
 *.pyc
+
+# Generated outputs (VERY IMPORTANT)
+debug_output/
+demo_output/
+demo_images/
+*.png
+
+# Logs (optional)
+*.log
+*.csv
